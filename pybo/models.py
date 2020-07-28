@@ -4,12 +4,14 @@ from django.db import models
 from django.db import models
 
 
-class Question(model.Model):
-    subject = models.CharField(max_lenth=200)
+class Question(models.Model):
+    subject = models.CharField(max_length=200)
     content = models.TextField()
-    create_data = models.DateTimeField()
+    create_date = models.DateTimeField()
+    def __str__(self):
+        return self.subject
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE # 질문이 사라지면 답변도 사라짐
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_date = models.DateTimeField()
